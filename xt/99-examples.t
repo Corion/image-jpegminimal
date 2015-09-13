@@ -13,4 +13,8 @@ sub check {
     like( $output, qr/$_ syntax OK/, "$_ compiles" )
 }
 
-find({wanted => \&check, no_chdir => 1}, 'examples');
+if( -d 'examples') {
+    find({wanted => \&check, no_chdir => 1}, 'examples');
+} else {
+    ok "No examples found";
+};
