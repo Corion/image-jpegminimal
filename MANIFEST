@@ -1,6 +1,6 @@
 .gitignore
 Changes
-example/gen-data.pl
+examples/gen-data.pl
 lib/Image/JpegMinimal.pm
 Makefile.PL
 MANIFEST
