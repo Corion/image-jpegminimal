@@ -9,6 +9,7 @@ META.json
 META.yml
 README
 README.mkdn
+t/01-synopsis.t
 t/data/IMG_7467.JPG
 t/data/IMG_7468.JPG
 t/data/IMG_7468_blurred.JPG

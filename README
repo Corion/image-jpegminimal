@@ -23,12 +23,21 @@ SYNOPSIS
            src="$file"
            />
         HTML
-    
                 push @tags, $html;
             };
             
-            # The headers accumulate in $compressor
-            my %headers = $compressor->headers;
+            return @tags
+        }
+    
+        # This goes into your HTML
+        print join "\n", gen_img(@ARGV);
+    
+        # The headers accumulate in $compressor
+        my %headers = $compressor->headers;
+        
+        # This goes into your Javascript
+        print $headers{l};
+        print $headers{p};
 
 DESCRIPTION
 

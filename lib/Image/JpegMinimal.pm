@@ -32,12 +32,21 @@ Image::JpegMinimal - create JPEG previews without headers
        src="$file"
        />
     HTML
-
             push @tags, $html;
         };
         
-        # The headers accumulate in $compressor
-        my %headers = $compressor->headers;
+        return @tags
+    }
+
+    # This goes into your HTML
+    print join "\n", gen_img(@ARGV);
+
+    # The headers accumulate in $compressor
+    my %headers = $compressor->headers;
+    
+    # This goes into your Javascript
+    print $headers{l};
+    print $headers{p};
 
 =head1 DESCRIPTION
 
@@ -226,7 +235,6 @@ sub split_image {
     
     my($width,$height, $data) = $self->compress_image( $file, $xmax, $ymax );
     my $orientation = $self->get_orientation( $width, $height );
-    warn "$width x $height : $orientation";
     my( $payload, $min_header ) = $self->strip_header( $width,$height,$data );
     $self->{header}->{$orientation} ||= $self->btoa( $min_header );
     
