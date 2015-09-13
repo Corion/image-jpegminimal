@@ -4,6 +4,9 @@ use Imager;
 use Carp qw(croak carp);
 use MIME::Base64 'encode_base64';
 
+use vars '$VERSION';
+$VERSION = '0.01';
+
 =head1 NAME
 
 Image::JpegMinimal - create JPEG previews without headers
@@ -46,7 +49,24 @@ image preview. This is achieved by splitting up the preview image into
 a JPEG header which is common to all images and the JPEG image data.
 With a Javascript-enabled browser, these previews will be shown until
 the request for the real image has finished loading the data. This reduces
-the latency.
+the latency and bandwidth needed until the user sees an image.
+
+It turns the following image
+
+=for html
+  <img width="285" height="427" src="t/data/IMG_7468.JPG" />
+
+into 250 bytes of image data representing this image:
+
+=for html
+  <img width="28" height="42" src="t/data/IMG_7468_preview.JPG" />
+
+The Javascript on the client side then scales and blurs that preview
+image to create a very blurry placeholder until the real image data
+arrives from the server.
+
+=for html
+  <img width="285" height="427" src="t/data/IMG_7468_blurred.JPG" />
 
 See below for the Javascript needed to reassemble the image data
 from the split header and scan data.
